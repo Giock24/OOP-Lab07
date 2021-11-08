@@ -70,6 +70,15 @@ public final class TestAnonymousComparator {
         dwashington.addFollowedUser("writers", ntaleb);
         final List<User> denzelUsers = dwashington.getFollowedUsers();
         //System.out.println(denzelUsers);
+        
+        var MyComparator = new Comparator<User>() {
+
+			public int compare(User o1, User o2) {
+				if (o1.getAge() > o2.getAge()) return 1;
+				if (o1.getAge() < o2.getAge()) return -1;
+				return 0;
+			}
+        };
         /*
          * Order denzel's followed users incrementally by age:
          * 
@@ -81,15 +90,7 @@ public final class TestAnonymousComparator {
          * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 41
          */
         
-        Collections.sort(denzelUsers,new Comparator<User>() {
-
-			public int compare(User o1, User o2) {
-				if (o1.getAge() > o2.getAge()) return 1;
-				if (o1.getAge() < o2.getAge()) return -1;
-				return 0;
-			}
-        	
-        }); 
+        Collections.sort(denzelUsers, MyComparator);
         //System.out.println(denzelUsers);
         /*
          * expected Result
@@ -113,6 +114,7 @@ public final class TestAnonymousComparator {
         mrossi.addFollowedUser("economists", ntaleb);
         mrossi.addFollowedUser("actors i like", dwashington);
         final List<User> rossiUsers = mrossi.getFollowedUsers();
+        
         /*
          * Order rossi's followed users by age in decreasing order:
          * 
@@ -121,15 +123,7 @@ public final class TestAnonymousComparator {
          * NOTE: in order to sort a list think about a method of the utility
          * class Collections
          */
-        Collections.sort(rossiUsers,new Comparator<User>() {
-
-			public int compare(User o1, User o2) {
-				if (o1.getAge() > o2.getAge()) return -1;
-				if (o1.getAge() < o2.getAge()) return 1;
-				return 0;
-			}
-        	
-        }); 
+        Collections.sort(rossiUsers, MyComparator.reversed());
       //System.out.println(denzelUsers);
         /*
          * expected Result
