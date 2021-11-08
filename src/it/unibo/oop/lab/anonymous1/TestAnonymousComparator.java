@@ -1,7 +1,11 @@
 package it.unibo.oop.lab.anonymous1;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.*;
 
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUser;
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
@@ -46,6 +50,7 @@ public final class TestAnonymousComparator {
     /**
      * @param args
      *            ignored
+     * @return 
      */
     public static void main(final String... args) {
         /*
@@ -64,6 +69,7 @@ public final class TestAnonymousComparator {
         dwashington.addFollowedUser("writers", mgladwell);
         dwashington.addFollowedUser("writers", ntaleb);
         final List<User> denzelUsers = dwashington.getFollowedUsers();
+        //System.out.println(denzelUsers);
         /*
          * Order denzel's followed users incrementally by age:
          * 
@@ -74,7 +80,17 @@ public final class TestAnonymousComparator {
          * 
          * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 41
          */
-        // TODO
+        
+        Collections.sort(denzelUsers,new Comparator<User>() {
+
+			public int compare(User o1, User o2) {
+				if (o1.getAge() > o2.getAge()) return 1;
+				if (o1.getAge() < o2.getAge()) return -1;
+				return 0;
+			}
+        	
+        }); 
+        //System.out.println(denzelUsers);
         /*
          * expected Result
          */
@@ -105,7 +121,16 @@ public final class TestAnonymousComparator {
          * NOTE: in order to sort a list think about a method of the utility
          * class Collections
          */
-        // TODO
+        Collections.sort(rossiUsers,new Comparator<User>() {
+
+			public int compare(User o1, User o2) {
+				if (o1.getAge() > o2.getAge()) return -1;
+				if (o1.getAge() < o2.getAge()) return 1;
+				return 0;
+			}
+        	
+        }); 
+      //System.out.println(denzelUsers);
         /*
          * expected Result
          */
